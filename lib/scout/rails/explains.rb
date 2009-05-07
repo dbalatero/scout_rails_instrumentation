@@ -5,19 +5,19 @@ class ActiveRecord::ConnectionAdapters::AbstractAdapter
   end
 end
 
-class ActiveRecord::ConnectionAdapters::MysqlAdapter
+class ActiveRecord::ConnectionAdapters::MysqlAdapter < ActiveRecord::ConnectionAdapters::AbstractAdapter
   def explain(sql)
     self.execute("EXPLAIN #{sql}").all_hashes
   end
 end
 
-class ActiveRecord::ConnectionAdapters::PostgreSQLAdapter
+class ActiveRecord::ConnectionAdapters::PostgreSQLAdapter < ActiveRecord::ConnectionAdapters::AbstractAdapter
   def explain(sql)
     self.execute("EXPLAIN #{sql}").flatten
   end
 end
 
-class ActiveRecord::ConnectionAdapters::SQLiteAdapter
+class ActiveRecord::ConnectionAdapters::SQLiteAdapter < ActiveRecord::ConnectionAdapters::AbstractAdapter
   # This is inherited by SQLite3Adapter so it's not necessary to define it again.
   def explain(sql)
     self.execute("EXPLAIN QUERY PLAN #{sql}").map{|r| r["detail"] }
