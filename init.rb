@@ -5,5 +5,5 @@ Scout.start! do
   end
   ActiveRecord::ConnectionAdapters::AbstractAdapter.class_eval do
     alias_method_chain :log, :instrumentation
-  end
+  end if defined?(ActiveRecord)
 end

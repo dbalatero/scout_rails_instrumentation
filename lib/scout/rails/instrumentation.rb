@@ -40,4 +40,4 @@ class ActiveRecord::ConnectionAdapters::AbstractAdapter
     
     results
   end
-end
+end if defined?(ActiveRecord)
